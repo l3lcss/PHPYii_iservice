@@ -1,5 +1,5 @@
 <div class="menu_icon">
-  <a href="<?php echo Yii::app()->createUrl("Home/RequestForm"); ?>">
+  <a href="<?php echo Yii::app()->createUrl("Home/Index"); ?>">
     <div><?php echo CHtml::image("images/home.png"); ?></div>
     <div>หน้าหลัก</div>
   </a>
