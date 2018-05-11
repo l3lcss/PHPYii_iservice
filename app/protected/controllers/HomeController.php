@@ -49,5 +49,50 @@ class HomeController extends Controller {
       "model" => $model
     ));
   }
+
+  function actionDeviceForm($id = null){
+    $model = new Device();
+
+    if(!empty($_POST["Device"])){
+      $id = $_POST["Device"]["id"];
+      $buy_date = $_POST["Device"]["device_buy_date"];
+      $garantee_expire_date = $_POST["Device"]["device_garantee_expire_date"];
+
+      if(!empty($id)){
+        $model = Device::model()->findByPk($id);
+      }
+
+      $model->_attributes = $_POST["Device"];
+
+      if($model->save()){
+        $this->redirect(array("DeviceList"));
+      }
+    }
+
+    if(!empty($id)){
+      $buy_date = ($model->device_buy_date);
+      $garantee_expire_date = ($model->device_garantee_expire_date);
+
+      $model = Device::model()->findByPk($id);
+      $model->device_buy_date = $buy_date;
+      $model->device_garantee_expire_date = $garantee_expire_date;
+    }
+
+    $this->render("DeviceForm",array(
+      "model" => $model
+    ));
+  }
+
+  function actionDeviceList(){
+    $model = new Device();
+    $this->render("DeviceList",array(
+      "model" => $model
+    ));
+  }
+
+  function actionDeviceDelete($id){
+    Device::model()->deleteByPk($id);
+    $this->redirect(array("DeviceList"));
+  }
 }
  ?>

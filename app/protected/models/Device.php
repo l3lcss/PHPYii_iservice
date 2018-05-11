@@ -26,6 +26,8 @@
     public function beforeValidate(){
       if ($this->isNewRecord) {
         $this->device_created_date = new CDbExpression("NOW()");
+        $this->device_buy_date = new CDbExpression("NOW()");
+        $this->device_garantee_expire_date = new CDbExpression("NOW()");
       }
 
       return parent::beforeValidate();
